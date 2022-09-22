@@ -1,0 +1,80 @@
+body {
+   margin: 5px;
+   padding: 5px;
+   font-family: sans-serif;
+   background-color:gainsboro;
+ }
+ 
+ .tweet {
+   border: 2px solid dodgerblue;
+   width: 700px;
+   height: 350px;
+   min-height: 68px;
+   padding: 10px;
+   display: flex;
+   font-family: "Arial";
+   font-size: 14px;
+   line-height: 18px;
+ }
+ 
+ .avatar {
+   width: 48px;
+   height: 48px;
+   border-radius: 5px;
+   margin-right: 10px;
+ }
+ 
+ .name {
+   font-weight: bold;
+   margin-bottom: 0.5em;
+   margin-right: 0.3em;
+ }
+ 
+ .handle {
+   color: #8899a6;
+   font-size: 13px;
+   font-style: italic;
+ }
+ 
+ .time {
+   padding-left: 0.3em;
+   color: #8899a6;
+ }
+ 
+ .time::before {
+   content: "\00b7";
+   padding-right: 0.3em;
+ }
+ 
+ .ActionButton {
+   width: 100px;
+   margin-top: 10px;
+   margin-left: 55px;
+   font-size: 1.4em;
+   color: #238cd6;
+ }
+ 
+ .ActionButton {
+   width: 15px;
+   display:inline;
+ }
+ 
+ .App,
+ .List,
+ .ExternalCounter
+{
+   width: 40px;
+   display: inline;
+ }
+ 
+ .List,
+ .ExternalCounter,
+ .App
+  {
+
+   bottom: 8px;
+   font-size: 13px;
+   margin-left: 6px;
+   font-weight: bold;
+ }
+ 

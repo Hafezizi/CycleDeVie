@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="twitt.css">
+    <link rel="stylesheet" href="fontawesome-free/cs/fontawesome.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    
+    
+    
+    <title>CycleDeVie</title>
+</head>
+<body>
+  <center>
+<script  src="fontawesome-free/js/all.js"></script> 
+    <div id="root"></div>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.js"></script>
+    <script src="react/babel.js"></script>
+    <script src="react/moment.min.js"></script>
+
+    <script type="text/babel">  
+var testTweet = {
+  message: `Développeur de site Web avec des compétences solides en résolution de
+problèmes et une expérience reconnue dans la création et la conception
+de site Web dans un environnement d'essai.
+Volontaire, ayant le goût de l'initiative et du challenge, j'aime travailler en équipe.`,
+  gravatar: " f65f4fa68a4e21eebbdd9bf952bcee05",
+  author: {
+    handle: "DevSoumano",
+    name: "Mohamed El Hafedh Soumaré"
+  }
+};
+
+function Tweet({ tweet }) {
+  return (
+    <div className="tweet">
+      <Avatar hash={tweet.gravatar} />
+      <div className="content">
+        <NameWithHandle author={tweet.author} />
+        <Time time={tweet.timestamp} /> 
+        <Message text={tweet.message} /> 
+      <div className="ActionButton">
+        <div className="row ">
+          <div className="col-3">
+            <App />
+            </div>
+            <div className="col-3">
+              <List />
+            </div>
+            <div className="col-4">
+              <ExternalCounter />
+            </div>
+          </div>
+       
+       
+      
+     
+        </div>        
+      </div>
+    </div>
+  );
+}
+
+function Avatar({ hash }) {
+  let url = `https://www.gravatar.com/avatar/${hash}`;
+  return <img src="https://s.gravatar.com/avatar/f65f4fa68a4e21eebbdd9bf952bcee05?s=80" 
+                className="avatar" alt="avatar" />
+}
+function NameWithHandle({ author }) {
+  const { name, handle } = author;
+  return (
+    <span className="name-with-handle">
+      <span className="name ">{name}</span>
+      <span className="handle">@{handle}</span>
+    </span>
+  );
+}
+const Time = ({ time }) => {
+  const timeString = moment(time).fromNow();
+  return <span className="time">{timeString}</span>;
+};
+
+    function Sessage({ text }) {
+      return <div className="message">{text}</div>;
+    }
+        class ActionButton extends React.Component {
+  render() {
+          console.log(`Render ActionButton (${this.props.text}) Component `);
+            return <button className={`btn btn-${this.props.clsBtn}`}
+            onClick={ this.props.callback }>
+           <h5><span className={this.props.icons} /></h5>
+              { this.props.text }
+          </button>
+            }
+      }
+
+    let externalCounter = 0;
+        class ExternalCounter extends React.Component {
+   incrementCounter = () => {
+                externalCounter++;
+                  this.forceUpdate();
+                        }
+      render() {
+    return (
+      <div>
+          <ActionButton callback={ this.incrementCounter }
+            text="Likes"
+            clsBtn="primary"
+            icons="fa-solid fa-thumbs-up"
+            />
+              <div className="h6 text-center p-2">
+                  j'aime: { externalCounter }
+               </div>
+      </div>
+              )
+                  }
+    }
+        class Message extends React.Component {
+          render() {
+            console.log(`Render Message Component `);
+          return (
+      <div>
+            <ActionButton theme="primary"{...this.props} />
+                <div className="h5 text-center p-2">
+                        { this.props.message }
+                 </div>
+      </div>
+                    )
+                      }
+}
+  class List extends React.Component {
+   constructor(props) {
+    super(props);
+    this.state = {
+    names: ["UGB", "CFPP", "LPGI"]
+                  }
+}
+    reverseList = () => {
+      this.setState({ names: this.state.names.reverse()});
+}
+    render() {
+  console.log("Render List Component");
+    return (
+  <div>
+      <ActionButton callback={ this.reverseList }
+          text=""
+          icons="fa-solid fa-retweet"
+          clsBtn="dark" />
+          { this.state.names.map((name, index) => {
+            return <h6 key={ name }>{ name }</h6>
+})}
+    </div>
+)
+}
+}   
+    class App extends React.Component {
+      constructor(props) {
+      super(props);
+      this.state = {
+      counter: 0
+}
+}
+      incrementCounter = () => {
+    this.setState({ counter: this.state.counter + 1 });
+}
+  render() {
+  console.log("Render App Component");
+    return (
+      <div>
+        <Message message={ `j'adore: ${this.state.counter}`}
+        callback={ this.incrementCounter }
+          text=""
+          icons="fa-solid fa-heart"
+          clsBtn="danger" />
+</div>
+)
+}
+    }
+    ReactDOM.render(<Tweet  tweet={testTweet} />, document.getElementById('root'));
+     
+              </script>
+</body>
+</html>
